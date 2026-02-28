@@ -14,6 +14,7 @@ import _ "github.com/bamgoo/trace-file"
 [trace.file]
 driver = "file"
 json = true
+fields = { trace_id = "tid", span_id = "sid", parent_span_id = "psid", timestamp = "ts" }
 
 [trace.file.setting]
 store = "store/trace"
@@ -24,7 +25,6 @@ maxline = 0
 compress = true
 maxage = "7d"
 maxfiles = 30
-fields = { trace_id = "tid", span_id = "sid", parent_span_id = "psid", timestamp = "ts" }
 ```
 
 - `store`: base directory for relative output path
@@ -35,4 +35,4 @@ fields = { trace_id = "tid", span_id = "sid", parent_span_id = "psid", timestamp
 - `compress`: gzip rotated files (`.gz`)
 - `maxage`: remove rotated files older than age
 - `maxfiles`: keep only latest rotated files
-- `fields`: output fields selection / mapping (array or map)
+- `fields` (on `[trace.file]`): output fields selection / mapping (array or map)
