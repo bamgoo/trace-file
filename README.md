@@ -1,45 +1,42 @@
 # trace-file
 
-`trace-file` 是 `trace` 模块的 `file` 驱动。
+`trace-file` 是 `github.com/infrago/trace` 的**file 驱动**。
 
-## 安装
+## 包定位
 
-```bash
-go get github.com/infrago/trace@latest
-go get github.com/infrago/trace-file@latest
-```
+- 类型：驱动
+- 作用：把 `trace` 模块的统一接口落到 `file` 后端实现
 
-## 接入
+## 快速接入
 
 ```go
 import (
     _ "github.com/infrago/trace"
     _ "github.com/infrago/trace-file"
-    "github.com/infrago/infra"
 )
-
-func main() {
-    infra.Run()
-}
 ```
-
-## 配置示例
 
 ```toml
 [trace]
 driver = "file"
 ```
 
-## 公开 API（摘自源码）
+## `setting` 专用配置项
 
-- `func (w *rotatingWriter) Close() error`
-- `func (w *rotatingWriter) WriteLine(line string) error`
-- `func (d *fileDriver) Connect(inst *trace.Instance) (trace.Connection, error)`
-- `func (c *fileConnection) Open() error`
-- `func (c *fileConnection) Close() error`
-- `func (c *fileConnection) Write(spans ...trace.Span) error`
+配置位置：`[trace].setting`
 
-## 排错
+- `store`
+- `output`
+- `file`
+- `path`
+- `maxsize`
+- `slice`
+- `maxline`
+- `compress`
+- `maxage`
+- `maxfiles`
 
-- driver 未生效：确认模块段 `driver` 值与驱动名一致
-- 连接失败：检查 endpoint/host/port/鉴权配置
+## 说明
+
+- `setting` 仅对当前驱动生效，不同驱动键名可能不同
+- 连接失败时优先核对 `setting` 中 host/port/认证/超时等参数
