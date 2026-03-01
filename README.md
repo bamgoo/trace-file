@@ -1,11 +1,11 @@
 # trace-file
 
-File driver for `github.com/bamgoo/trace`.
+File driver for `github.com/infrago/trace`.
 
 ## Install
 
 ```go
-import _ "github.com/bamgoo/trace-file"
+import _ "github.com/infrago/trace-file"
 ```
 
 ## Config

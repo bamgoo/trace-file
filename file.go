@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/bamgoo/bamgoo"
-	. "github.com/bamgoo/base"
-	"github.com/bamgoo/trace"
+	"github.com/infrago/infra"
+	. "github.com/infrago/base"
+	"github.com/infrago/trace"
 )
 
 type (
@@ -36,7 +36,7 @@ type (
 )
 
 func init() {
-	bamgoo.Register("file", &fileDriver{})
+	infra.Register("file", &fileDriver{})
 }
 
 func (d *fileDriver) Connect(inst *trace.Instance) (trace.Connection, error) {
